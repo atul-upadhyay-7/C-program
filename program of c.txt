@@ -1,0 +1,854 @@
+1. Input and output of an integer
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int num;
+    printf("Enter an integer: ");
+    scanf("%d", &num);
+    printf("You entered: %d\n", num);
+    return 0;
+}
+2. Input and output of two integers and their sum
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int a, b;
+    printf("Enter two integers: ");
+    scanf("%d %d", &a, &b);
+    printf("Sum = %d\n", a + b);
+    return 0;
+}
+3. Input and output of a float number
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    float f;
+    printf("Enter a floating point number: ");
+    scanf("%f", &f);
+    printf("You entered: %.2f\n", f);
+    return 0;
+}
+4. Input and output of a character
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    char ch;
+    printf("Enter a character: ");
+    scanf(" %c", &ch);  // space before %c to consume newline
+    printf("You entered: %c\n", ch);
+    return 0;
+}
+5. Input a string and output it
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    char str[100];
+    printf("Enter a string: ");
+    scanf("%s", str);
+    printf("You entered: %s\n", str);
+    return 0;
+}
+6. Input two numbers and output the greater one
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int x, y;
+    printf("Enter two numbers: ");
+    scanf("%d %d", &x, &y);
+    if (x > y)
+        printf("Greater number is: %d\n", x);
+    else if (y > x)
+        printf("Greater number is: %d\n", y);
+    else
+        printf("Both numbers are equal.\n");
+    return 0;
+}
+7. Input a number and output if it is even or odd
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int num;
+    printf("Enter an integer: ");
+    scanf("%d", &num);
+    if (num % 2 == 0)
+        printf("%d is even\n", num);
+    else
+        printf("%d is odd\n", num);
+    return 0;
+}
+8. Input length and width, output area of rectangle
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    float length, width;
+    printf("Enter length and width of rectangle: ");
+    scanf("%f %f", &length, &width);
+    printf("Area = %.2f\n", length * width);
+    return 0;
+}
+9. Input a number and output its square
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Enter a number: ");
+    scanf("%d", &n);
+    printf("Square = %d\n", n * n);
+    return 0;
+}
+10. Input temperature in Celsius and output in Fahrenheit
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    float celsius, fahrenheit;
+    printf("Enter temperature in Celsius: ");
+    scanf("%f", &celsius);
+    fahrenheit = (celsius * 9 / 5) + 32;
+    printf("Temperature in Fahrenheit: %.2f\n", fahrenheit);
+    return 0;
+}
+If you'd like, I can also add explanations for each or write programs on more specific topics. Want me to do that?
+
+
+
+You said:
+make an calculator using switch case in c language
+
+ChatGPT said:
+Absolutely! Here's a simple calculator program in C using switch case. It takes two numbers and an operator (+, -, *, /, %) as input and performs the corresponding arithmetic operation.
+
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    char op;
+    double num1, num2, result;
+
+    printf("Enter an operator (+, -, *, /, %): ");
+    scanf(" %c", &op);  // space before %c to skip any whitespace
+
+    printf("Enter two numbers: ");
+    scanf("%lf %lf", &num1, &num2);
+
+    switch(op) {
+        case '+':
+            result = num1 + num2;
+            printf("Result: %.2lf\n", result);
+            break;
+
+        case '-':
+            result = num1 - num2;
+            printf("Result: %.2lf\n", result);
+            break;
+
+        case '*':
+            result = num1 * num2;
+            printf("Result: %.2lf\n", result);
+            break;
+
+        case '/':
+            if(num2 != 0) {
+                result = num1 / num2;
+                printf("Result: %.2lf\n", result);
+            } else {
+                printf("Error: Division by zero is not allowed.\n");
+            }
+            break;
+
+        case '%':
+            if((int)num2 != 0) {
+                printf("Result: %d\n", (int)num1 % (int)num2);
+            } else {
+                printf("Error: Division by zero is not allowed.\n");
+            }
+            break;
+
+        default:
+            printf("Invalid operator.\n");
+    }
+
+    return 0;
+}
+How it works:
+Takes an operator and two numbers from the user.
+
+Uses switch on the operator to decide which calculation to perform.
+
+Handles division by zero for / and %.
+
+Prints the result or error message accordingly.
+
+Want me to help add any features? Like a loop to keep calculating until exit?
+
+
+
+You said:
+write 5 programs of union in c language
+
+ChatGPT said:
+Sure! Here are 5 different C programs demonstrating the use of union with various examples:
+
+1. Simple Union to Store Either Integer or Float
+c
+Copy
+Edit
+#include <stdio.h>
+
+union Number {
+    int i;
+    float f;
+};
+
+int main() {
+    union Number num;
+
+    num.i = 10;
+    printf("Integer: %d\n", num.i);
+
+    num.f = 220.5;
+    printf("Float: %.2f\n", num.f);
+
+    // Note: Since union members share the same memory,
+    // after assigning to num.f, num.i value is overwritten.
+    printf("After assigning float, integer value becomes: %d\n", num.i);
+
+    return 0;
+}
+2. Union to Store Student Data (ID or Grade)
+c
+Copy
+Edit
+#include <stdio.h>
+
+union StudentInfo {
+    int id;
+    char grade;
+};
+
+int main() {
+    union StudentInfo s;
+
+    s.id = 12345;
+    printf("Student ID: %d\n", s.id);
+
+    s.grade = 'A';
+    printf("Student Grade: %c\n", s.grade);
+
+    // Again, s.id will be overwritten when s.grade is assigned
+    printf("After assigning grade, student ID becomes: %d\n", s.id);
+
+    return 0;
+}
+3. Union with Structure to Save Memory
+c
+Copy
+Edit
+#include <stdio.h>
+
+union Data {
+    int i;
+    char str[20];
+};
+
+int main() {
+    union Data data;
+
+    data.i = 100;
+    printf("Integer: %d\n", data.i);
+
+    // Storing string in union
+    strcpy(data.str, "Hello, Union!");
+    printf("String: %s\n", data.str);
+
+    // Note: After storing string, data.i will be overwritten
+    printf("Integer after storing string: %d\n", data.i);
+
+    return 0;
+}
+4. Union to Store Different Types of Sensor Data
+c
+Copy
+Edit
+#include <stdio.h>
+
+union SensorData {
+    int temperature;
+    float humidity;
+    char status;
+};
+
+int main() {
+    union SensorData sensor;
+
+    sensor.temperature = 25;
+    printf("Temperature: %d\n", sensor.temperature);
+
+    sensor.humidity = 65.5;
+    printf("Humidity: %.1f\n", sensor.humidity);
+
+    sensor.status = 'N'; // N for Normal
+    printf("Status: %c\n", sensor.status);
+
+    return 0;
+}
+5. Using Union with Tag to Identify Stored Data
+c
+Copy
+Edit
+#include <stdio.h>
+
+union Data {
+    int i;
+    float f;
+    char str[20];
+};
+
+int main() {
+    union Data data;
+    int choice;
+
+    printf("Select data type to enter (1 - int, 2 - float, 3 - string): ");
+    scanf("%d", &choice);
+
+    switch(choice) {
+        case 1:
+            printf("Enter integer: ");
+            scanf("%d", &data.i);
+            printf("You entered integer: %d\n", data.i);
+            break;
+        case 2:
+            printf("Enter float: ");
+            scanf("%f", &data.f);
+            printf("You entered float: %.2f\n", data.f);
+            break;
+        case 3:
+            printf("Enter string: ");
+            scanf("%s", data.str);
+            printf("You entered string: %s\n", data.str);
+            break;
+        default:
+            printf("Invalid choice\n");
+    }
+
+    return 0;
+}
+In all these examples, notice how only one member of the union can hold a value at a time because all members share the same memory space.
+
+If you want, I can also explain any of these in detail or provide more advanced union examples!
+
+
+
+You said:
+write 5 program of functions in c language
+
+ChatGPT said:
+Got it! Here are 5 different C programs demonstrating the use of functions in various ways — including with parameters, return values, and recursion.
+
+1. Simple Function without Parameters and Return Value
+c
+Copy
+Edit
+#include <stdio.h>
+
+void greet() {
+    printf("Hello! Welcome to C programming.\n");
+}
+
+int main() {
+    greet();  // call the function
+    return 0;
+}
+2. Function with Parameters and No Return Value
+c
+Copy
+Edit
+#include <stdio.h>
+
+void printSum(int a, int b) {
+    printf("Sum = %d\n", a + b);
+}
+
+int main() {
+    int x = 5, y = 7;
+    printSum(x, y);
+    return 0;
+}
+3. Function with Parameters and Return Value
+c
+Copy
+Edit
+#include <stdio.h>
+
+int multiply(int a, int b) {
+    return a * b;
+}
+
+int main() {
+    int result = multiply(4, 6);
+    printf("Product = %d\n", result);
+    return 0;
+}
+4. Recursive Function to Calculate Factorial
+c
+Copy
+Edit
+#include <stdio.h>
+
+int factorial(int n) {
+    if (n == 0)
+        return 1;
+    else
+        return n * factorial(n - 1);
+}
+
+int main() {
+    int num = 5;
+    printf("Factorial of %d = %d\n", num, factorial(num));
+    return 0;
+}
+5. Function to Find the Maximum of Two Numbers
+c
+Copy
+Edit
+#include <stdio.h>
+
+int max(int a, int b) {
+    if (a > b)
+        return a;
+    else
+        return b;
+}
+
+int main() {
+    int x = 10, y = 20;
+    printf("Maximum = %d\n", max(x, y));
+    return 0;
+}
+Want me to write functions for any specific tasks or more advanced examples?
+
+
+
+You said:
+write 10 programs for (for) loop i c language
+
+ChatGPT said:
+Sure! Here are 10 simple C programs using the for loop, each demonstrating a different use case or concept:
+
+1. Print numbers from 1 to 10
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    for(int i = 1; i <= 10; i++) {
+        printf("%d ", i);
+    }
+    printf("\n");
+    return 0;
+}
+2. Print even numbers between 1 and 20
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    for(int i = 2; i <= 20; i += 2) {
+        printf("%d ", i);
+    }
+    printf("\n");
+    return 0;
+}
+3. Calculate the sum of first N natural numbers
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int n, sum = 0;
+    printf("Enter N: ");
+    scanf("%d", &n);
+
+    for(int i = 1; i <= n; i++) {
+        sum += i;
+    }
+    printf("Sum = %d\n", sum);
+    return 0;
+}
+4. Print multiplication table of a given number
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int num;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    for(int i = 1; i <= 10; i++) {
+        printf("%d x %d = %d\n", num, i, num * i);
+    }
+    return 0;
+}
+5. Print first N Fibonacci numbers
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int n, t1 = 0, t2 = 1, nextTerm;
+    printf("Enter N: ");
+    scanf("%d", &n);
+
+    printf("Fibonacci Series: ");
+    for(int i = 1; i <= n; i++) {
+        printf("%d ", t1);
+        nextTerm = t1 + t2;
+        t1 = t2;
+        t2 = nextTerm;
+    }
+    printf("\n");
+    return 0;
+}
+6. Print digits of a number in reverse order
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int num;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    printf("Digits in reverse order: ");
+    for(; num != 0; num /= 10) {
+        printf("%d ", num % 10);
+    }
+    printf("\n");
+    return 0;
+}
+7. Print a right-angled triangle pattern of stars
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int rows;
+    printf("Enter number of rows: ");
+    scanf("%d", &rows);
+
+    for(int i = 1; i <= rows; i++) {
+        for(int j = 1; j <= i; j++) {
+            printf("* ");
+        }
+        printf("\n");
+    }
+    return 0;
+}
+8. Count the number of digits in a number
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int num, count = 0;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    for(; num != 0; num /= 10) {
+        count++;
+    }
+    printf("Number of digits = %d\n", count);
+    return 0;
+}
+9. Print ASCII values and characters for A to Z
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    for(char ch = 'A'; ch <= 'Z'; ch++) {
+        printf("ASCII value of %c = %d\n", ch, ch);
+    }
+    return 0;
+}
+10. Check if a number is prime or not (using for loop)
+c
+Copy
+Edit
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+    int num;
+    bool isPrime = true;
+
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    if(num <= 1) {
+        isPrime = false;
+    } else {
+        for(int i = 2; i <= num / 2; i++) {
+            if(num % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+    }
+
+    if(isPrime)
+        printf("%d is a prime number.\n", num);
+    else
+        printf("%d is not a prime number.\n", num);
+
+    return 0;
+}
+If you want me to explain any of these or write more examples, just ask!
+
+
+
+You said:
+write 10 programs of while loop in c language
+
+ChatGPT said:
+Sure! Here are 10 programs using the while loop in C, each demonstrating different examples and use cases:
+
+1. Print numbers from 1 to 10
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int i = 1;
+    while(i <= 10) {
+        printf("%d ", i);
+        i++;
+    }
+    printf("\n");
+    return 0;
+}
+2. Print even numbers between 1 and 20
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int i = 2;
+    while(i <= 20) {
+        printf("%d ", i);
+        i += 2;
+    }
+    printf("\n");
+    return 0;
+}
+3. Calculate sum of first N natural numbers
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int n, i = 1, sum = 0;
+    printf("Enter N: ");
+    scanf("%d", &n);
+
+    while(i <= n) {
+        sum += i;
+        i++;
+    }
+    printf("Sum = %d\n", sum);
+    return 0;
+}
+4. Print multiplication table of a given number
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int num, i = 1;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    while(i <= 10) {
+        printf("%d x %d = %d\n", num, i, num * i);
+        i++;
+    }
+    return 0;
+}
+5. Print first N Fibonacci numbers
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int n, t1 = 0, t2 = 1, nextTerm, count = 1;
+    printf("Enter N: ");
+    scanf("%d", &n);
+
+    printf("Fibonacci Series: ");
+    while(count <= n) {
+        printf("%d ", t1);
+        nextTerm = t1 + t2;
+        t1 = t2;
+        t2 = nextTerm;
+        count++;
+    }
+    printf("\n");
+    return 0;
+}
+6. Reverse digits of a number
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int num, reversed = 0, remainder;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    while(num != 0) {
+        remainder = num % 10;
+        reversed = reversed * 10 + remainder;
+        num /= 10;
+    }
+    printf("Reversed number: %d\n", reversed);
+    return 0;
+}
+7. Count digits of a number
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int num, count = 0;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    while(num != 0) {
+        num /= 10;
+        count++;
+    }
+    printf("Number of digits: %d\n", count);
+    return 0;
+}
+8. Print a right-angled triangle pattern
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int rows, i = 1, j;
+    printf("Enter number of rows: ");
+    scanf("%d", &rows);
+
+    while(i <= rows) {
+        j = 1;
+        while(j <= i) {
+            printf("* ");
+            j++;
+        }
+        printf("\n");
+        i++;
+    }
+    return 0;
+}
+9. Check if a number is prime or not
+c
+Copy
+Edit
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+    int num, i = 2;
+    bool isPrime = true;
+
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    if(num <= 1) {
+        isPrime = false;
+    } else {
+        while(i <= num / 2) {
+            if(num % i == 0) {
+                isPrime = false;
+                break;
+            }
+            i++;
+        }
+    }
+
+    if(isPrime)
+        printf("%d is a prime number.\n", num);
+    else
+        printf("%d is not a prime number.\n", num);
+
+    return 0;
+}
+10. Sum of digits of a number
+c
+Copy
+Edit
+#include <stdio.h>
+
+int main() {
+    int num, sum = 0, remainder;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    while(num != 0) {
+        remainder = num % 10;
+        sum += remainder;
+        num /= 10;
+    }
+    printf("Sum of digits: %d\n", sum);
+    return 0;
+}
